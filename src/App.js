@@ -1,5 +1,6 @@
 import './css/App.css';
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { UppercaseLetters, LowercaseLetters, Symbols, Numbers } from './components/Characters'
 
 function App() {
@@ -58,10 +59,13 @@ function App() {
   }
   return (
     <div className="App">
+      <Helmet>
+        <title>パスワード生成ツール</title>
+      </Helmet>
       <div className="container">
         <div className="generator">
           <h1 className="generator_header">
-            パスワード生成ツール
+            <i class="fas fa-key"></i> パスワード生成ツール
           </h1>
           <div className="generator_password">
             <h3>{password}</h3>
