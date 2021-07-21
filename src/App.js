@@ -1,6 +1,5 @@
 import './css/App.css';
 import React, { useState } from 'react';
-import { Helmet } from 'react-helmet';
 import { UppercaseLetters, LowercaseLetters, Symbols, Numbers } from './components/Characters'
 
 function App() {
@@ -34,7 +33,7 @@ function App() {
 
     setPassword(createPassword(characterList));
 
-    if (characterList == "") {
+    if (characterList === "") {
       setIsAlert(true);
       setAlert('どの文字を含めるか、指定してください');
       setTimeout(() => { setAlert(''); }, 1000);
@@ -72,13 +71,10 @@ function App() {
   }
   return (
     <div className="App">
-      <Helmet>
-        <title>パスワード生成ツール</title>
-      </Helmet>
       <div className="container">
         <div className="generator">
           <h1 className="generator_header">
-            <i class="fas fa-key"></i> パスワード生成ツール
+            <i className="fas fa-key"></i> パスワード生成ツール
           </h1>
           <div className="generator_password">
             <h3>{password}</h3>
@@ -114,7 +110,7 @@ function App() {
               className="ItemBox-CheckBox-Input"
               name="uppercase-letters"
             />
-            <label for="uppercase-letters" className="ItemBox-CheckBox-Label"></label>
+            <label htmlFor="uppercase-letters" className="ItemBox-CheckBox-Label"></label>
           </div>
 
           <div className="form-group">
@@ -127,7 +123,7 @@ function App() {
               className="ItemBox-CheckBox-Input"
               name="lowercase-letters"
             />
-            <label for="lowercase-letters" className="ItemBox-CheckBox-Label"></label>
+            <label htmlFor="lowercase-letters" className="ItemBox-CheckBox-Label"></label>
           </div>
 
           <div className="form-group">
@@ -140,7 +136,7 @@ function App() {
               className="ItemBox-CheckBox-Input"
               name="include-symbols"
             />
-            <label for="include-symbols" className="ItemBox-CheckBox-Label"></label>
+            <label htmlFor="include-symbols" className="ItemBox-CheckBox-Label"></label>
           </div>
 
           <div className="form-group">
@@ -153,7 +149,7 @@ function App() {
               className="ItemBox-CheckBox-Input"
               name="include-number"
             />
-            <label for="include-number" className="ItemBox-CheckBox-Label"></label>
+            <label htmlFor="include-number" className="ItemBox-CheckBox-Label"></label>
           </div>
           <div className="generateBtn_Div">
             <button onClick={handlePassword} className="generator_btn">

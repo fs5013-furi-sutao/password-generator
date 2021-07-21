@@ -25,16 +25,19 @@ body {
 .container {
     position: relative;
     top: -110px;
-    margin: 0 auto;
-    padding: 10px 40px;
+    padding: 10px 20px;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     background-color: #3C3C3C;
 }
 
 .generator {
-    padding: 20px;
-    /*border-radius: s5px;*/
+    padding: 10px;
+}
+
+.generator h1 {
+    padding: 10px;
+    font-size: 1.2em;
 }
 
 .generator_header {
@@ -42,11 +45,6 @@ body {
     color: #f9f9f9;
     margin-bottom: 10px;
     letter-spacing: 1px;
-}
-
-.generator h1 {
-    padding: 10px;
-    font-size: 1.2em;
 }
 
 .generator_password {
@@ -58,15 +56,13 @@ body {
     margin-bottom: 15px;
     margin-left: 10px;
     color: #f9f9f9;
-    font-size: 1.2em;
+    font-size: 0.9em;
 }
 
 .generator_password>h3 {
     margin-left: 10px;
     margin-top: 7px;
     padding-bottom: 0.4em;
-    font-weight: 400;
-    letter-spacing: 1px;
 }
 
 .generator_password>button {
@@ -136,19 +132,18 @@ body {
 
 .message_area {
     height: 2.4em;
+    font-size: 0.9em;
 }
 
 .alert_Message {
     text-align: center;
     color: red;
-    font-size: 16px;
     letter-spacing: 1px;
 }
 
 .success_Message {
     text-align: center;
     color: #6EB46E;
-    font-size: 16px;
     letter-spacing: 1px;
 }
 
