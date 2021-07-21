@@ -1,23 +1,147 @@
-import logo from './logo.svg';
-import './App.css';
+import './css/App.css';
+import React, { useState } from 'react';
+import { UppercaseLetters, LowercaseLetters, Symbols, Numbers } from './components/Characters'
 
 function App() {
+
+  const [password, setPassword] = useState('');
+  const [strength, setStrength] = useState(20);
+  const [includeUp, setIncludeUp] = useState(false);
+  const [includeLow, setIncludeLow] = useState(false);
+  const [includeNum, setIncludeNum] = useState(false);
+  const [includeSym, setIncludeSym] = useState(false);
+  const [alert, setAlert] = useState('');
+  const handlePassword = (e) => {
+    let characterList = '';
+
+    if (includeUp) {
+      characterList += UppercaseLetters;
+    }
+
+    if (includeLow) {
+      characterList += LowercaseLetters;
+    }
+
+    if (includeNum) {
+      characterList += Numbers;
+    }
+
+    if (includeSym) {
+      characterList += Symbols;
+    }
+
+    setPassword(createPassword(characterList));
+  }
+
+  const createPassword = (characterList) => {
+    let password = '';
+    const CharacterListLength = characterList.length;
+
+    for (let i = 0; i < strength; i++) {
+      const characterIndex = Math.floor(Math.random() * CharacterListLength);
+      password += characterList.charAt(characterIndex);
+    }
+
+    return password;
+  }
+
+  const handleCopy = (e) => {
+    navigator.clipboard.writeText(password);
+    if (password.length > 0) {
+      setAlert('パスワードをコピーしました');
+      setTimeout(() => { setAlert(''); }, 1000);
+    }
+    else {
+      setAlert('パスワードを生成してください');
+      setTimeout(() => { setAlert(''); }, 1000);
+    }
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+        <div className="generator">
+          <h1 className="generator_header">
+            パスワード生成ツール
+          </h1>
+          <div className="generator_password">
+            <h3>{password}</h3>
+            <button onClick={handleCopy} className="copy_button">
+              <i className="far fa-clipboard"></i>
+            </button>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password-strength">パスワードの長さ</label>
+            <input
+              defaultValue={strength}
+              onChange={(e) => setStrength(e.target.value)}
+              type="number"
+              id='password-strength'
+              name="password-strength"
+              max="20" min="8"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="uppercase-letters">大文字を含める</label>
+            <input
+              onChange={(e) => setIncludeUp(e.target.checked)}
+              checked={includeUp}
+              type="checkbox"
+              id='uppercase-letters'
+              className="ItemBox-CheckBox-Input"
+              name="uppercase-letters"
+            />
+            <label for="uppercase-letters" className="ItemBox-CheckBox-Label"></label>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="lowercase-letters">小文字を含める</label>
+            <input
+              onChange={(e) => setIncludeLow(e.target.checked)}
+              checked={includeLow}
+              type="checkbox"
+              id='lowercase-letters'
+              className="ItemBox-CheckBox-Input"
+              name="lowercase-letters"
+            />
+            <label for="lowercase-letters" className="ItemBox-CheckBox-Label"></label>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="include-symbols">記号を含める</label>
+            <input
+              onChange={(e) => setIncludeSym(e.target.checked)}
+              checked={includeSym}
+              type="checkbox"
+              id='include-symbols'
+              className="ItemBox-CheckBox-Input"
+              name="include-symbols"
+            />
+            <label for="include-symbols" className="ItemBox-CheckBox-Label"></label>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="include-numbers">数字を含める</label>
+            <input
+              onChange={(e) => setIncludeNum(e.target.checked)}
+              checked={includeNum}
+              type="checkbox"
+              id='include-number'
+              className="ItemBox-CheckBox-Input"
+              name="include-number"
+            />
+            <label for="include-number" className="ItemBox-CheckBox-Label"></label>
+          </div>
+          <div className="generateBtn_Div">
+            <button onClick={handlePassword} className="generator_btn">
+              <i className="fa fa-cogs"></i>
+              &nbsp;&nbsp;パスワードを生成する
+            </button>
+          </div>
+          <p className='alert_Message'>{alert}</p>
+        </div>
+      </div>
     </div>
   );
 }
