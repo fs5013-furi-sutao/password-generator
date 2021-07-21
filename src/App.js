@@ -12,6 +12,7 @@ function App() {
   const [includeNum, setIncludeNum] = useState(false);
   const [includeSym, setIncludeSym] = useState(false);
   const [alert, setAlert] = useState('');
+  const [isAlert, setIsAlert] = useState(false);
   const handlePassword = (e) => {
     let characterList = '';
 
@@ -32,6 +33,16 @@ function App() {
     }
 
     setPassword(createPassword(characterList));
+
+    if (characterList == "") {
+      setIsAlert(true);
+      setAlert('どの文字を含めるか、指定してください');
+      setTimeout(() => { setAlert(''); }, 1000);
+    } else {
+      setIsAlert(false);
+      setAlert('パスワードを生成しました');
+      setTimeout(() => { setAlert(''); }, 1000);
+    }
   }
 
   const createPassword = (characterList) => {
@@ -49,10 +60,12 @@ function App() {
   const handleCopy = (e) => {
     navigator.clipboard.writeText(password);
     if (password.length > 0) {
+      setIsAlert(false);
       setAlert('パスワードをコピーしました');
       setTimeout(() => { setAlert(''); }, 1000);
-    }
-    else {
+
+    } else {
+      setIsAlert(true);
       setAlert('パスワードを生成してください');
       setTimeout(() => { setAlert(''); }, 1000);
     }
@@ -72,6 +85,11 @@ function App() {
             <button onClick={handleCopy} className="copy_button">
               <i className="far fa-clipboard"></i>
             </button>
+          </div>
+
+          <div className="message_area">
+            {isAlert && <p className='alert_Message'>{alert}</p>}
+            {!isAlert && <p className='success_Message'>{alert}</p>}
           </div>
 
           <div className="form-group">
@@ -143,10 +161,9 @@ function App() {
               &nbsp;&nbsp;パスワードを生成する
             </button>
           </div>
-          <p className='alert_Message'>{alert}</p>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 

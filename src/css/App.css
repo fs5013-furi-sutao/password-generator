@@ -51,6 +51,7 @@ body {
 
 .generator_password {
     width: 20em;
+    height: 2.4em;
     display: flex;
     justify-content: space-between;
     background: rgba(0, 0, 0, 0.5);
@@ -132,7 +133,19 @@ body {
     font-size: 14px;
 }
 
+.message_area {
+    height: 2em;
+}
+
 .alert_Message {
+    text-align: center;
+    margin-top: 10px;
+    color: red;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.success_Message {
     text-align: center;
     margin-top: 10px;
     color: #6EB46E;
