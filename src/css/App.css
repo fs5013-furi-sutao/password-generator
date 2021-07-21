@@ -113,6 +113,7 @@ body {
     cursor: pointer;
     border: none;
     display: block;
+    margin-top: 1em;
     padding: 10px 40px;
     color: #fff;
     background: #0E639C;
@@ -134,12 +135,11 @@ body {
 }
 
 .message_area {
-    height: 2em;
+    height: 2.4em;
 }
 
 .alert_Message {
     text-align: center;
-    margin-top: 10px;
     color: red;
     font-size: 16px;
     letter-spacing: 1px;
@@ -147,7 +147,6 @@ body {
 
 .success_Message {
     text-align: center;
-    margin-top: 10px;
     color: #6EB46E;
     font-size: 16px;
     letter-spacing: 1px;

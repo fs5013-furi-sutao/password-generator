@@ -61,7 +61,7 @@ function App() {
     navigator.clipboard.writeText(password);
     if (password.length > 0) {
       setIsAlert(false);
-      setAlert('パスワードをコピーしました');
+      setAlert('コピーしました！');
       setTimeout(() => { setAlert(''); }, 1000);
 
     } else {
