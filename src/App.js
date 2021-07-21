@@ -12,6 +12,29 @@ function App() {
   const [includeSym, setIncludeSym] = useState(false);
   const [alert, setAlert] = useState('');
   const [isAlert, setIsAlert] = useState(false);
+
+  const onChangeFunc = (e) => {
+    setStrength(e.target.value);
+  }
+
+  const onBlurFunc = (e) => {
+    if (e.target.value < 8) {
+      e.target.value = 8;
+      setIsAlert(true);
+      setAlert('設定できる長さの最小値は 8 です');
+      setTimeout(() => { setAlert(''); }, 2000);
+    }
+
+    if (e.target.value > 20) {
+      e.target.value = 20;
+      setIsAlert(true);
+      setAlert('設定できる長さの最大値は 20 です');
+      setTimeout(() => { setAlert(''); }, 2000);
+    }
+    
+    setStrength(e.target.value);
+  }
+
   const handlePassword = (e) => {
     let characterList = '';
 
@@ -92,11 +115,13 @@ function App() {
             <label htmlFor="password-strength">パスワードの長さ</label>
             <input
               defaultValue={strength}
-              onChange={(e) => setStrength(e.target.value)}
+              onChange={onChangeFunc}
+              onBlur={onBlurFunc}
               type="number"
               id='password-strength'
               name="password-strength"
-              max="20" min="8"
+              max="20" min="8" step="1"
+              
             />
           </div>
 
